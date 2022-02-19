@@ -15,7 +15,7 @@ dataset = pd.read_csv(dataset_url)
 st.write(dataset)
 
 # Data pre-processing
-st.header('Data pre-processing)
+st.header('Data pre-processing')
           
 # Prepare class label column
 st.subheader('# Prepare class label column')
