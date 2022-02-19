@@ -92,3 +92,48 @@ with st.spinner('Model is building...'):
   model.fit(X_train, y_train)
 st.success('Model is trained!')
 
+# Apply Model to Make Predictions
+st.markdown('#### Apply Model to Make Predictions')
+
+# Make predictions
+y_train_pred = model.predict(X_train)
+y_test_pred = model.predict(X_test)
+
+# Prepare DataFrame of predictions for y_train
+df_y_train = pd.concat([pd.Series(list(y_train), name = 'y_train'), pd.Series(y_train_pred, name = 'y_train_pred')], axis=1)
+
+with st.expander('See Actual vs Predicted Y values for Training set'):
+  st.write(df_y_train)
+with st.expander('See Actual vs Predicted Y values for Test set'):
+  st.write(df_y_test)
+
+# Model Performance
+st.markdown('## Model Performance')
+
+# Compute the model performance
+from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
+
+ac_train = accuracy_score(y_train, y_train_pred)
+ac_test = accuracy_score(y_test, y_test_pred)
+
+sn_train = recall_score(y_train, y_train_pred)
+sn_test = recall_score(y_test, y_test_pred)
+
+sp_train = recall_score(y_train, y_train_pred, pos_label=0)
+sp_test = recall_score(y_test, y_test_pred, pos_label=0)
+
+mcc_train = matthews_corrcoef(y_train, y_train_pred)
+mcc_test = matthews_corrcoef(y_test, y_test_pred)
+
+# Prepare a DataFrame of the model performance
+metrics = ['Ac', 'Ac', 'Sn', 'Sn', 'Sp', 'Sp', 'MCC', 'MCC']
+dataset = ['Train', 'Test', 'Train', 'Test', 'Train', 'Test', 'Train', 'Test']
+performance = [ac_train, ac_test, sn_train, sn_test, sp_train, sp_test, mcc_train, mcc_test]
+
+dictionary_performance = {'Metrics': metrics, 'Dataset': dataset, 'Performance': performance}
+df_performance = pd.DataFrame(dictionary_performance)
+
+with st.expander('See Summary table of model performance'):
+  st.write(df_performance)
+
+
