@@ -3,11 +3,8 @@ import pandas as pd
 from sklearn.feature_selection import VarianceThreshold
 
 
-st.markdown('''
-# 💊
-# AChEpred
-Prediction of Acetylcholinesterase inhibitors and non-inhibitors
-''')
+st.markdown('# 💊 AChEpred')
+st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 
 # Load dataset
 st.markdown('# Load dataset')
