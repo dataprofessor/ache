@@ -158,4 +158,5 @@ for title, normalize in titles_options:
         normalize=normalize,
     )
     disp.ax_.set_title(title)
-st.pyplot(disp)
+plt.savefig('plot.png')
+
