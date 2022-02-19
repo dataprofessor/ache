@@ -159,8 +159,8 @@ for title, normalize in titles_options:
         normalize=normalize,
     )
     disp.ax_.set_title(title)
-plt.savefig('plot.png')
+plt.savefig('plot.png', dpi=300)
 
 with st.expander('See: Confusion Matrix'):
   image = Image.open('plot.png')
-  st.image(image, width=250)
+  st.image(image)
