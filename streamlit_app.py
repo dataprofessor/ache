@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 
 st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
@@ -83,7 +84,11 @@ with st.expander('See X_train, y_train dimensions'):
 with st.expander('See X_train, y_train dimensions'):
   st.write(X_test.shape, y_test.shape)
   
+# Model Building
+st.markdown('#### Model Building')
 
-
+model = RandomForestClassifier(n_estimators=500, random_state=42)
+with st.spinner('Model is building...'):
+  model.fit(X_train, y_train)
 
 
