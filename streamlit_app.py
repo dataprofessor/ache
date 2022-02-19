@@ -7,7 +7,7 @@ st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 
 # Load dataset
-st.markdown('# Load dataset')
+st.markdown('## Load dataset')
 st.info('''
 A dataset consisting of Acetylcholinesterase bioactivity data was compiled from the ChEMBL database.
 
@@ -21,10 +21,10 @@ with st.expander('See dataset'):
   st.write(dataset)
 
 # Data pre-processing
-st.markdown('# Data pre-processing')
+st.markdown('## Data pre-processing')
           
 # Prepare class label column
-st.markdown('### Prepare class label column')
+st.markdown('#### Prepare class label column')
 bioactivity_threshold = []
 for i in dataset.pIC50:
   if float(i) <= 5:
@@ -42,7 +42,7 @@ with st.expander('See dataset (with class label column)'):
   st.write(df)
 
 # Select X and Y variables
-st.markdown('### Select X and Y variables')
+st.markdown('#### Select X and Y variables')
 
 X = df.drop(['pIC50', 'class'], axis=1)
 
@@ -59,7 +59,7 @@ with st.expander('See Y variable'):
   st.write(Y)
 
 # Remove low variance features
-st.markdown('### Remove low variance features')
+st.markdown('#### Remove low variance features')
 
 def remove_low_variance(input_data, threshold=0.1):
     selection = VarianceThreshold(threshold)
