@@ -146,8 +146,8 @@ with st.expander('See: Summary Table of Model Performance'):
 st.markdown('## 5. Confusion matrix')
 
 titles_options = [
-    ("Confusion Matrix (Not Normalized)", None),
-    ("Confusion Matrix (Normalized)", "true")]
+    ("Training Set (Not Normalized)", None),
+    ("Training Set (Normalized)", "true")]
 
 for title, normalize in titles_options:
     disp = ConfusionMatrixDisplay.from_estimator(
