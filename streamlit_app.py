@@ -19,7 +19,7 @@ Each compounds were labeled as inhibitors (pIC50 ≥ 6) or non-inhibitors (pIC50
 dataset_url = 'https://raw.githubusercontent.com/dataprofessor/data/master/acetylcholinesterase_07_bioactivity_data_2class_pIC50_pubchem_fp.csv'
 dataset = pd.read_csv(dataset_url)
 
-with st.expander('See dataset'):
+with st.expander('See: Dataset'):
   st.write(dataset)
 
 # Data pre-processing
@@ -40,7 +40,7 @@ for i in dataset.pIC50:
 bioactivity_class = pd.Series(bioactivity_threshold, name='class')
 df = pd.concat([dataset, bioactivity_class], axis=1)
 
-with st.expander('See dataset (with class label column)'):
+with st.expander('See: Dataset (with class label column)'):
   st.write(df)
 
 # Select X and Y variables
@@ -54,10 +54,10 @@ def target_encode(val):
 
 Y = df['class'].apply(target_encode)
 
-with st.expander('See X variables'):
+with st.expander('See: X variables'):
   st.write(X)
 
-with st.expander('See Y variable'):
+with st.expander('See: Y variable'):
   st.write(Y)
 
 # Remove low variance features
@@ -70,7 +70,7 @@ def remove_low_variance(input_data, threshold=0.1):
 
 X = remove_low_variance(X, threshold=0.1)
 
-with st.expander('See X variables (low variance features removed)'):
+with st.expander('See: X variables (low variance features removed)'):
   st.write(X)
 
 # Random Forest Classification Model
@@ -80,9 +80,9 @@ st.markdown('## 3. Random Forest Classification Model')
 st.markdown('#### Data splitting')
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
-with st.expander('See X_train, y_train dimensions'):
+with st.expander('See: X_train, y_train dimensions'):
   st.write(X_train.shape, y_train.shape)
-with st.expander('See X_train, y_train dimensions'):
+with st.expander('See: X_train, y_train dimensions'):
   st.write(X_test.shape, y_test.shape)
   
 # Model Building
@@ -103,14 +103,14 @@ y_test_pred = model.predict(X_test)
 # Prepare DataFrame of predictions for y_train
 df_y_train = pd.concat([pd.Series(list(y_train), name = 'y_train'), pd.Series(y_train_pred, name = 'y_train_pred')], axis=1)
 
-with st.expander('See Actual vs Predicted Y values for Training set'):
+with st.expander('See: Actual vs Predicted Y values for Training set'):
   st.write(df_y_train)
   
 # Prepare DataFrame of predictions for y_test
 df_y_test = pd.concat([pd.Series(list(y_test), name = 'y_test'), pd.Series(y_test_pred, name = 'y_test_pred')], axis=1)
 df_y_test
 
-with st.expander('See Actual vs Predicted Y values for Test set'):
+with st.expander('See: Actual vs Predicted Y values for Test set'):
   st.write(df_y_test)
 
 # Model Performance
@@ -137,7 +137,7 @@ performance = [ac_train, ac_test, sn_train, sn_test, sp_train, sp_test, mcc_trai
 dictionary_performance = {'Metrics': metrics, 'Dataset': dataset, 'Performance': performance}
 df_performance = pd.DataFrame(dictionary_performance)
 
-with st.expander('See Summary table of model performance'):
+with st.expander('See: Summary Table of Model Performance'):
   st.write(df_performance)
 
 
