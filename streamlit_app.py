@@ -78,9 +78,9 @@ st.markdown('## 3. Random Forest Classification Model')
 st.markdown('#### Data splitting')
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
-with st.expander('See `X_train`, `y_train` dimensions'):
+with st.expander('See X_train, y_train dimensions'):
   st.write(X_train.shape, y_train.shape)
-with st.expander('See `X_train`, `y_train` dimensions'):
+with st.expander('See X_train, y_train dimensions'):
   st.write(X_test.shape, y_test.shape)
   
 
