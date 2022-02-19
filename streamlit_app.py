@@ -8,6 +8,12 @@ st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 
 # Load dataset
 st.markdown('# Load dataset')
+st.info('''
+A dataset consisting of Acetylcholinesterase bioactivity data was compiled from the ChEMBL database.
+
+Each compounds were labeled as inhibitors (pIC50 ≥ 6) or non-inhibitors (pIC50 ≤ 5) on the basis of their bioactivity data values.
+''')
+
 dataset_url = 'https://raw.githubusercontent.com/dataprofessor/data/master/acetylcholinesterase_07_bioactivity_data_2class_pIC50_pubchem_fp.csv'
 dataset = pd.read_csv(dataset_url)
 st.write(dataset)
