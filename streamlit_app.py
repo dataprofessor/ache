@@ -157,5 +157,5 @@ for title, normalize in titles_options:
         cmap=plt.cm.Greens,
         normalize=normalize,
     )
-    #disp.ax_.set_title(title)
-    st.pyplot(disp)
+    disp.ax_.set_title(title)
+st.pyplot(disp)
