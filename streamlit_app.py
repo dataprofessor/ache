@@ -16,7 +16,8 @@ Each compounds were labeled as inhibitors (pIC50 ≥ 6) or non-inhibitors (pIC50
 
 dataset_url = 'https://raw.githubusercontent.com/dataprofessor/data/master/acetylcholinesterase_07_bioactivity_data_2class_pIC50_pubchem_fp.csv'
 dataset = pd.read_csv(dataset_url)
-st.write(dataset)
+with st.expander():
+  st.write(dataset)
 
 # Data pre-processing
 st.markdown('# Data pre-processing')
