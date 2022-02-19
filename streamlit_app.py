@@ -7,7 +7,7 @@ st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 
 # Load dataset
-st.markdown('## Load dataset')
+st.markdown('## 1. Load dataset')
 st.info('''
 A dataset consisting of Acetylcholinesterase bioactivity data was compiled from the ChEMBL database.
 
@@ -21,7 +21,7 @@ with st.expander('See dataset'):
   st.write(dataset)
 
 # Data pre-processing
-st.markdown('## Data pre-processing')
+st.markdown('## 2. Data pre-processing')
           
 # Prepare class label column
 st.markdown('#### Prepare class label column')
