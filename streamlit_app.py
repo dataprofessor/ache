@@ -4,11 +4,13 @@ from sklearn.feature_selection import VarianceThreshold
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
+import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 
 st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 
-# Load dataset
+# 1. Load dataset
 st.markdown('## 1. Load dataset')
 st.info('''
 A dataset consisting of Acetylcholinesterase bioactivity data was compiled from the ChEMBL database.
@@ -22,7 +24,7 @@ dataset = pd.read_csv(dataset_url)
 with st.expander('See: Dataset'):
   st.write(dataset)
 
-# Data pre-processing
+# 2. Data pre-processing
 st.markdown('## 2. Data pre-processing')
           
 # Prepare class label column
@@ -73,7 +75,7 @@ X = remove_low_variance(X, threshold=0.1)
 with st.expander('See: X variables (low variance features removed)'):
   st.write(X)
 
-# Random Forest Classification Model
+# 3. Random Forest Classification Model
 st.markdown('## 3. Random Forest Classification Model')
 
 # Data splitting
@@ -112,8 +114,8 @@ df_y_test = pd.concat([pd.Series(list(y_test), name = 'y_test'), pd.Series(y_tes
 with st.expander('See: Actual vs Predicted Y values for Test set'):
   st.write(df_y_test)
 
-# Model Performance
-st.markdown('## Model Performance')
+# 4. Model Performance
+st.markdown('## 4. Model Performance')
 
 # Compute the model performance
 ac_train = accuracy_score(y_train, y_train_pred)
@@ -139,4 +141,21 @@ df_performance = pd.DataFrame(dictionary_performance)
 with st.expander('See: Summary Table of Model Performance'):
   st.write(df_performance)
 
+# 5. Confusion matrix
+st.markdown('## 5. Confusion matrix')
 
+titles_options = [
+    ("Confusion Matrix (Not Normalized)", None),
+    ("Confusion Matrix (Normalized)", "true"),
+]
+for title, normalize in titles_options:
+    disp = ConfusionMatrixDisplay.from_estimator(
+        model,
+        X_test,
+        y_test,
+        display_labels=y_test.unique(),
+        cmap=plt.cm.Greens,
+        normalize=normalize,
+    )
+    disp.ax_.set_title(title)
+    st.pyplot(disp)
