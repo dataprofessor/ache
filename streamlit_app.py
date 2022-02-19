@@ -5,20 +5,21 @@ from sklearn.feature_selection import VarianceThreshold
 
 st.markdown('''
 # 💊
-# AChEpred: Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
+# AChEpred
+### Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
 ''')
 
 # Load dataset
-st.header('# Load dataset')
+st.markdown('# Load dataset')
 dataset_url = 'https://raw.githubusercontent.com/dataprofessor/data/master/acetylcholinesterase_07_bioactivity_data_2class_pIC50_pubchem_fp.csv'
 dataset = pd.read_csv(dataset_url)
 st.write(dataset)
 
 # Data pre-processing
-st.header('Data pre-processing')
+st.markdown('# Data pre-processing')
           
 # Prepare class label column
-st.subheader('# Prepare class label column')
+st.markdown('### Prepare class label column')
 bioactivity_threshold = []
 for i in dataset.pIC50:
   if float(i) <= 5:
@@ -34,7 +35,7 @@ df = pd.concat([dataset, bioactivity_class], axis=1)
 st.write(df)
 
 # Select X and Y variables
-st.subheader('# Select X and Y variables')
+st.markdown('### Select X and Y variables')
 
 X = df.drop(['pIC50', 'class'], axis=1)
 
@@ -48,7 +49,7 @@ st.write(X)
 st.write(Y)
 
 # Remove low variance features
-st.subheader('# Remove low variance features')
+st.markdown('### Remove low variance features')
 
 def remove_low_variance(input_data, threshold=0.1):
     selection = VarianceThreshold(threshold)
