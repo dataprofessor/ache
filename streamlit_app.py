@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
+from PIL import Image
 
 st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
@@ -160,3 +161,6 @@ for title, normalize in titles_options:
     disp.ax_.set_title(title)
 plt.savefig('plot.png')
 
+with st.expander('See: Confusion Matrix'):
+  image = Image.open('plot.png')
+  st.image(image, width=250)
