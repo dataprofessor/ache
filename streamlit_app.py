@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
 
 st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
@@ -104,6 +105,11 @@ df_y_train = pd.concat([pd.Series(list(y_train), name = 'y_train'), pd.Series(y_
 
 with st.expander('See Actual vs Predicted Y values for Training set'):
   st.write(df_y_train)
+  
+# Prepare DataFrame of predictions for y_test
+df_y_test = pd.concat([pd.Series(list(y_test), name = 'y_test'), pd.Series(y_test_pred, name = 'y_test_pred')], axis=1)
+df_y_test
+
 with st.expander('See Actual vs Predicted Y values for Test set'):
   st.write(df_y_test)
 
@@ -111,8 +117,6 @@ with st.expander('See Actual vs Predicted Y values for Test set'):
 st.markdown('## Model Performance')
 
 # Compute the model performance
-from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
-
 ac_train = accuracy_score(y_train, y_train_pred)
 ac_test = accuracy_score(y_test, y_test_pred)
 
