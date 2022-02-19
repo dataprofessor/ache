@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.feature_selection import VarianceThreshold
-
+from sklearn.model_selection import train_test_split
 
 st.markdown('# 💊 AChEpred')
 st.info('Prediction of Acetylcholinesterase inhibitors and non-inhibitors')
@@ -70,4 +70,20 @@ X = remove_low_variance(X, threshold=0.1)
 
 with st.expander('See X variables (low variance features removed)'):
   st.write(X)
+
+# Random Forest Classification Model
+st.markdown('## 3. Random Forest Classification Model')
+
+# Data splitting
+st.markdown('#### Data splitting')
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+
+with st.expander('See `X_train`, `y_train` dimensions'):
+  st.write(X_train.shape, y_train.shape)
+with st.expander('See `X_train`, `y_train` dimensions'):
+  st.write(X_test.shape, y_test.shape)
+  
+
+
+
 
