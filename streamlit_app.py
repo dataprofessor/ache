@@ -90,5 +90,5 @@ st.markdown('#### Model Building')
 model = RandomForestClassifier(n_estimators=500, random_state=42)
 with st.spinner('Model is building...'):
   model.fit(X_train, y_train)
-
+st.success('Model is trained!')
 
