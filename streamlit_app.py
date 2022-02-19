@@ -16,6 +16,7 @@ Each compounds were labeled as inhibitors (pIC50 ≥ 6) or non-inhibitors (pIC50
 
 dataset_url = 'https://raw.githubusercontent.com/dataprofessor/data/master/acetylcholinesterase_07_bioactivity_data_2class_pIC50_pubchem_fp.csv'
 dataset = pd.read_csv(dataset_url)
+
 with st.expander('See dataset'):
   st.write(dataset)
 
@@ -36,7 +37,9 @@ for i in dataset.pIC50:
 # Add class label column to the dataset DataFrame
 bioactivity_class = pd.Series(bioactivity_threshold, name='class')
 df = pd.concat([dataset, bioactivity_class], axis=1)
-st.write(df)
+
+with st.expander('See dataset (with class label column)'):
+  st.write(df)
 
 # Select X and Y variables
 st.markdown('### Select X and Y variables')
@@ -49,8 +52,11 @@ def target_encode(val):
 
 Y = df['class'].apply(target_encode)
 
-st.write(X)
-st.write(Y)
+with st.expander('See X variables'):
+  st.write(X)
+
+with st.expander('See Y variable'):
+  st.write(Y)
 
 # Remove low variance features
 st.markdown('### Remove low variance features')
@@ -62,4 +68,6 @@ def remove_low_variance(input_data, threshold=0.1):
 
 X = remove_low_variance(X, threshold=0.1)
 
+with st.expander('See X variables (low variance features removed)'):
+  st.write(X)
 
