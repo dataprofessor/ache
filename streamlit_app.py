@@ -146,8 +146,8 @@ st.markdown('## 5. Confusion matrix')
 
 titles_options = [
     ("Confusion Matrix (Not Normalized)", None),
-    ("Confusion Matrix (Normalized)", "true"),
-]
+    ("Confusion Matrix (Normalized)", "true")]
+
 for title, normalize in titles_options:
     disp = ConfusionMatrixDisplay.from_estimator(
         model,
@@ -157,5 +157,5 @@ for title, normalize in titles_options:
         cmap=plt.cm.Greens,
         normalize=normalize,
     )
-    disp.ax_.set_title(title)
+    #disp.ax_.set_title(title)
     st.pyplot(disp)
