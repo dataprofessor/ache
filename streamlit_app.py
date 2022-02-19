@@ -108,7 +108,6 @@ with st.expander('See: Actual vs Predicted Y values for Training set'):
   
 # Prepare DataFrame of predictions for y_test
 df_y_test = pd.concat([pd.Series(list(y_test), name = 'y_test'), pd.Series(y_test_pred, name = 'y_test_pred')], axis=1)
-df_y_test
 
 with st.expander('See: Actual vs Predicted Y values for Test set'):
   st.write(df_y_test)
